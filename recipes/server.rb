@@ -17,9 +17,14 @@
 # limitations under the License.
 #
 
+execute "apt-get update" do
+  action :nothing
+end
+
 # Add APT public key for the 10gen MongoDB repo
 execute "apt-key adv --keyserver keyserver.ubuntu.com --recv 7F0CEB10" do
   not_if 'apt-key list | grep "7F0CEB10"'
+  notifies :run, "execute[apt-get update]", :immediately
 end
 
 # Add the 10gen MongoDB repository to APT
