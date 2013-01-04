@@ -15,6 +15,7 @@ default
 Downloads, installs, configures and starts the java graylog2-server.  Does *not* install 
 the web-interface. Uses resources from the Opscode "apt" cookbook to add a repo from which
 it pulls MongoDB.
+Depends on java and mongo recipes
 
 web-interface
 -------------
