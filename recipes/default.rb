@@ -19,5 +19,7 @@
 
 include_recipe "java"
 
+include_recipe "mongodb::10gen_repo"
+
 # Install the Graylog2 server component by default
 include_recipe "graylog2::server"
