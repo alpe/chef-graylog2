@@ -36,7 +36,7 @@ execute "tar zxf graylog2-server-#{node["graylog2"]["server"]["version"]}.tar.gz
   cwd "#{node["graylog2"]["basedir"]}/rel"
   creates "#{node["graylog2"]["basedir"]}/rel/graylog2-server-#{node["graylog2"]["server"]["version"]}/build_date"
   action :nothing
-  subscribes :run, resources(:remote_file => "download_server"), :immediately
+  subscribes :run, "remote_file[download_server]", :immediately
 end
 
 # Link to the desired Graylog2 server version
@@ -60,7 +60,7 @@ end
 execute "update-rc.d graylog2 defaults" do
   creates "/etc/rc0.d/K20graylog2"
   action :nothing
-  subscribes :run, resources(:template => "/etc/init.d/graylog2"), :immediately
+  subscribes :run, "template[/etc/init.d/graylog2]", :immediately
 end
 
 # Service resource

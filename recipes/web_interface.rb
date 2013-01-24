@@ -43,7 +43,7 @@ execute "tar zxf graylog2-web-interface-#{node["graylog2"]["web_interface"]["ver
   cwd "#{node["graylog2"]["basedir"]}/rel"
   creates "#{node["graylog2"]["basedir"]}/rel/graylog2-web-interface-#{node["graylog2"]["web_interface"]["version"]}/build_date"
   action :nothing
-  subscribes :run, resources(:remote_file => "download_web_interface"), :immediately
+  subscribes :run, "remote_file[download_web_interface]", :immediately
 end
 
 # Link to the desired Graylog2 web interface version
@@ -55,7 +55,7 @@ end
 execute "bundle install" do
   cwd "#{node["graylog2"]["basedir"]}/web"
   action :nothing
-  subscribes :run, resources(:link => "#{node["graylog2"]["basedir"]}/web"), :immediately
+  subscribes :run, "link[#{node["graylog2"]["basedir"]}/web]", :immediately
 end
 
 # Create mongoid.yml
@@ -77,5 +77,5 @@ directory "#{node['graylog2']['basedir']}/rel/graylog2-web-interface-#{node['gra
   # TODO ct 2011-11-18 Set uid "65534" ???
   recursive true
   action :nothing
-  notifies :run, resources(:execute => "bundle install"), :immediately
+  notifies :run, "execute[bundle install]", :immediately
 end

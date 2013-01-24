@@ -54,10 +54,26 @@ Also also note - I have pegged the version of Bundler this cookbook installs at 
 of our infrastructure.  If you already use a different bundler, or want to use the latest, remove the
 "version" statement from the gem-package "bundler" resource in web-interface.rb.
 
+Testing
+=======
+run locally:
+    BUNDLE_GEMFILE=test/support/Gemfile rake knife
+    BUNDLE_GEMFILE=test/support/Gemfile rake foodcritic
+
+http://technology.customink.com/blog/2012/07/06/mvt-knife-test-and-travisci/
+
+
+
+
+
 License and Author
 ==================
 
-Author:: J.B. Zimmerman (<jzimmerman@mdsol.com>)
+Author: Alex Peters
+
+Author: Christian Trabold
+
+Author: J.B. Zimmerman (<jzimmerman@mdsol.com>)
 
 Copyright 2011 Medidata Solutions, Inc.
 
